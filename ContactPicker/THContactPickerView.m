@@ -366,6 +366,7 @@
         frame.size.height = newHeight;
         self.scrollView.frame = frame;
         
+        [self invalidateIntrinsicContentSize];
         if ([self.delegate respondsToSelector:@selector(contactPickerDidResize:)]){
             [self.delegate contactPickerDidResize:self];
         }
@@ -377,6 +378,11 @@
     } else {
         self.placeholderLabel.hidden = YES;
     }
+}
+
+- (CGSize)intrinsicContentSize
+{
+    return self.scrollView.bounds.size;
 }
 
 #pragma mark - UITextViewDelegate 
